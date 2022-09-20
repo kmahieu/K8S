@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: users-api-pod
+  labels:
+    name: users-api-pod
+    app: CDA-micro-services
+spec:
+  containers:
+    - name: users-api
+      image: test/users-service:latest
+      ports:
+        - containerPort: 80
