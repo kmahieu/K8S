@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-articles-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-articles
+  template:
+    metadata:
+      labels:
+        app: service-articles
+    spec:
+      containers:
+        - name: service-articles
+          image: kevdev74/service-articles:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-articles-clstp
+spec:
+  type: ClusterIP
+  selector: 
+    app: service-articles
+  ports: 
+    - port: 80
+      targetPort: 80

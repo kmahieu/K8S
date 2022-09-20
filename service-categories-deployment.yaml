@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-categories-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-categories
+  template:
+    metadata:
+      labels:
+        app: service-categories
+    spec:
+      containers:
+        - name: service-categories
+          image: kevdev74/service-categories:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-categories-clstp
+spec:
+  type: ClusterIP
+  selector: 
+    app: service-categories
+  ports: 
+    - port: 80
+      targetPort: 80

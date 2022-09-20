@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-users-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-users
+  template:
+    metadata:
+      labels:
+        app: service-users
+    spec:
+      containers:
+        - name: service-users
+          image: kevdev74/service-users:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-users-clstp
+spec:
+  type: ClusterIP
+  selector: 
+    app: service-users
+  ports: 
+    - port: 80
+      targetPort: 80
